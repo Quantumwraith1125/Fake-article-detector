@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Fake News Detector</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#statistics">Statistics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Detect Fake News With Confidence</h1>
+            <p>Our advanced AI-powered tool analyzes news content to help you identify potentially misleading information. Stay informed with reliable news.</p>
+            
+            <div class="search-container">
+                <form id="news-form">
+                    <textarea id="news-content" placeholder="Paste news article or enter URL..."></textarea>
+                    <button type="submit" id="analyze-btn">
+                        <i class="fas fa-search"></i> Analyze
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="animated-bg"></div>
+    </section>
+
+    <!-- Results Section (Initially Hidden) -->
+    <section id="results" class="results hidden">
+        <div class="container">
+            <h2>Analysis Results</h2>
+            <div class="result-card">
+                <div class="reliability-score">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="meter" cx="50" cy="50" r="45"></circle>
+                        </svg>
+                        <div class="percentage">
+                            <span id="score-value">0</span><span>%</span>
+                        </div>
+                    </div>
+                    <h3 id="reliability-text">Analyzing...</h3>
+                </div>
+                
+                <div class="analysis-details">
+                    <div class="detail-item">
+                        <div class="detail-header">
+                            <i class="fas fa-language"></i>
+                            <h4>Language Analysis</h4>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" id="language-meter"></div>
+                        </div>
+                        <p id="language-analysis">Analyzing emotional language, sensationalism, and grammar...</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-header">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Fact Checking</h4>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" id="fact-meter"></div>
+                        </div>
+                        <p id="fact-analysis">Checking claims against known facts...</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-header">
+                            <i class="fas fa-link"></i>
+                            <h4>Source Credibility</h4>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" id="source-meter"></div>
+                        </div>
+                        <p id="source-analysis">Evaluating source reputation and reliability...</p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="share-btn"><i class="fas fa-share-alt"></i> Share Results</button>
+                    <button id="report-btn"><i class="fas fa-flag"></i> Report Misinformation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-paste"></i>
+                    </div>
+                    <h3>Step 1</h3>
+                    <p>Paste your news article content or enter the URL of the news source</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Step 2</h3>
+                    <p>Our AI analyzes the content for signs of misinformation and bias</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Step 3</h3>
+                    <p>Receive a detailed breakdown of reliability and credibility scores</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3>Step 4</h3>
+                    <p>Make informed decisions about the content's trustworthiness</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="statistics">
+        <div class="container">
+            <h2>Misinformation Statistics</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3><span class="counter" data-target="68">0</span>%</h3>
+                    <p>of adults encounter fake news online</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3><span class="counter" data-target="3.8">0</span>B</h3>
+                    <p>false stories shared annually</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3><span class="counter" data-target="74">0</span>%</h3>
+                    <p>faster spread than true news</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3><span class="counter" data-target="92">0</span>%</h3>
+                    <p>accuracy of our detection system</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Our Technology</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Our fake news detection system uses advanced natural language processing algorithms to analyze news content for signs of misinformation. We evaluate multiple factors including:</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Language patterns and emotional manipulation</li>
+                        <li><i class="fas fa-check"></i> Source credibility and reputation</li>
+                        <li><i class="fas fa-check"></i> Fact verification against trusted databases</li>
+                        <li><i class="fas fa-check"></i> Statistical outliers in presentation</li>
+                    </ul>
+                    <p>We're committed to promoting media literacy and helping everyone make more informed choices about the news they consume and share.</p>
+                </div>
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='image.jpg') }}" alt="AI Analysis Visualization">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Fake News Detector</span>
+                </div>
+                <p>Fighting misinformation one article at a time</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#statistics">Statistics</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Media Literacy Guide</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-envelope"></i> contact@fakenewsdetector.com</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> @FakeNewsDetector</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fake News Detector. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</body>
+</html>
